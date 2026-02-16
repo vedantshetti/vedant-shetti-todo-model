@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TodoService } from "../services/todoService";
 
-function TodoItem({todo,loadTodos}){
+function TodoItem({todo,loadTodos,setDeleteTodo}){
     const[editing,setEditing] = useState(false);
     const[title,setTitle]=useState(todo.title);
     const[description,setDescription]=useState(todo.description);
@@ -72,7 +72,7 @@ function TodoItem({todo,loadTodos}){
               
               <div className="todo-actions">
                 <button className="icon-btn" onClick={()=>setEditing(true)}>Edit</button>
-                <button className="icon-btn delete-btn" onClick={handleDelete}>Delete</button>
+                <button className="icon-btn delete-btn"  onClick={()=>{console.log(todo) ; setDeleteTodo(todo)  } }>Delete</button>
               </div>
             
 
