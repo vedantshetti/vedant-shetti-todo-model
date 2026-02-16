@@ -31,31 +31,53 @@ function TodoItem({todo,loadTodos}){
     };
 
     return(
-        <div className="todo-item">
-            {editing ? (
-                <>
-                <input value={title} onChange={(e)=>setTitle(e.target.value)} />
-                <input value={description} onChange={(e)=>setDescription(e.target.value)}/>
-                <button onClick ={handleUpdate}>save</button>
-                </>
-            ):(
-                <>
-                <h3>{todo.title}</h3>
-                <p>{todo.description}</p>
-                <button onClick={()=>setEditing(true)}>Edit</button>
-            
-               </>
+        <div className="todo-item" data-status={todo.status}>
 
+
+            <div className="todo-left">
+                <input type="checkbox"/>
+            
+            {editing ? (
+                <div style={{width:"100%"}}>
+                    <input value={title} onChange={(e)=>setTitle(e.target.value)}/>
+                    <input value={description} onChange={(e)=>setDescription(e.target.value)}/>
+                    <button onClick={handleUpdate}>Save</button>
+                </div>
+            ):(
+             
+            <div>
+                <div className="todo-title">{todo.title}</div>
+                <small style={{color:"#64748b"}}>{todo.description}</small>
+                
+
+             </div>   
+        
 
             )}
+            </div>
 
-            <select value={todo.status} onChange={handleStatusChange}>
-                <option value="in-progress">in-progress</option>
-                <option value="completed">completed</option>
-                <option value="on hold">on-hold</option>
 
-                <button onClick={handleDelete}>Delete</button>
-            </select>
+
+
+
+
+
+
+            <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+                <select>
+                    <option value="completed">completed</option>
+                    <option value="on-hold">on-hold</option>
+                    <option value="in-progress">in-progress</option>
+                </select>
+              
+              <div className="todo-actions">
+                <button className="icon-btn" onClick={()=>setEditing(true)}>Edit</button>
+                <button className="icon-btn delete-btn" onClick={handleDelete}>Delete</button>
+              </div>
+            
+
+    
+        </div>    
         </div>
     );
 

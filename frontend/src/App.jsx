@@ -23,6 +23,9 @@ function App() {
   return(
     <div className="app">
       <h1>TODOER</h1>
+      <h3>What do you want to do today?</h3>
+      <br></br>
+      <br></br>
       <TodoInput loadTodos={loadTodos}/>
       <TodoList todos={todos} loadTodos={loadTodos}/>
     </div>

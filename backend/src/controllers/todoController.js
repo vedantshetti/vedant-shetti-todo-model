@@ -51,6 +51,8 @@ exports.deleteTodo = async (req,res)=>{
         res.json("deleted");
         
     }catch(err){
+        console.log(err.message);
+        
         res.status(500).json(err.message);
     }
 };  
