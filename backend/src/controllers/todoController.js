@@ -27,11 +27,17 @@ exports.addTodo = async (req,res)=>{
 exports.updateTodo = async (req,res)=>{
     try{
         const {id}=req.params;
-        const {title,description,status} =req.body;
+        let {title,description,status} =req.body;
+
+        title=title??null;
+        description=description??null;
+        status=status??null;
 
         const result = await pool.query(`update todos set title = coalesce($1,title),description = coalesce($2,description),status = coalesce($3,status) where id = $4 returning *` , [title,description, status,id]);
         res.json(result.rows[0]);
     }catch(err){
+        console.log(err.message);
+        
         res.status(500).json(err.message);
     }
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TodoService } from "../services/todoService";
 
 function TodoItem({todo,loadTodos}){
     const[editing,setEditing] = useState(false);
@@ -35,7 +36,7 @@ function TodoItem({todo,loadTodos}){
                 <>
                 <input value={title} onChange={(e)=>setTitle(e.target.value)} />
                 <input value={description} onChange={(e)=>setDescription(e.target.value)}/>
-                <button onclick ={handleUpdate}>save</button>
+                <button onClick ={handleUpdate}>save</button>
                 </>
             ):(
                 <>
@@ -49,9 +50,9 @@ function TodoItem({todo,loadTodos}){
             )}
 
             <select value={todo.status} onChange={handleStatusChange}>
-                <option value="pending">Pending</option>
-                <option value="completed">Completed</option>
-                <option value="on hold">On Hold</option>
+                <option value="in-progress">in-progress</option>
+                <option value="completed">completed</option>
+                <option value="on hold">on-hold</option>
 
                 <button onClick={handleDelete}>Delete</button>
             </select>
